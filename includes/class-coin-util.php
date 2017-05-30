@@ -134,7 +134,7 @@ class CoinUtil {
       elseif ( in_array( $type_byte, array( '02', '03' ) ) )
           $key_type = 'public';
       else
-          throw new Exception('Public or private key data does not match version type');
+          throw new Exception('A Chave Pública e Privada não correspondem ao tipo de versão');
 
       return $key_type;
   }

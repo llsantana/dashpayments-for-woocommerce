@@ -39,17 +39,17 @@ class DP_Exchange_Rate {
 
     $resp = wp_remote_get( $url , array( 'timeout' => 8 ) );
     if ( is_wp_error( $resp ) ) {
-      throw new Exception("Exchange Rate API connection failure: " . $resp->get_error_message() );
+      throw new Exception("Falha na conexão com Exchange Rate API: " . $resp->get_error_message() );
     }
 
     $body = $resp['body'];
     if ( null === $body || 0 == strlen($body) ) {
-      throw new Exception("Exchange Rate API connection failure: " . $obj->error );
+      throw new Exception("Falha na conexão com Exchange Rate API: " . $obj->error );
     }
 
     $obj = json_decode($body);
     if ( false === $obj->success ) {
-      throw new Exception("Exchange Rate API connection failure: " . $obj->error );
+      throw new Exception("Falha na conexão com Exchange Rate API: " . $obj->error );
     }
 
     return $obj->rate;

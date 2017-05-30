@@ -64,7 +64,7 @@ class DP_Invoice {
     }
 
     if ( 0 < count($missing) ) {
-      $ex_msg = "Required argument(s) not supplied: " + join(', ', $missing);
+      $ex_msg = "Os argumentos necessários não foram fornecidos: " + join(', ', $missing);
       throw new InvalidArgumentException($ex_msg);
     }
 
@@ -282,7 +282,7 @@ class DP_Invoice {
     $this->markAsPaid();
     $this->order->add_order_note(
       sprintf(
-        esc_html__("Order OverPaid by [%s] Dash", 'dashpay-woocommerce'),
+        esc_html__("Compra paga à mais [%s] Dash", 'dashpay-woocommerce'),
             $this->remainingBalance() * -1
       )
     );
@@ -293,7 +293,7 @@ class DP_Invoice {
     // status remains awaiting payment, simply add a note
     $this->order->add_order_note(
       sprintf(
-        esc_html__("Order UnderPaid - Balance Remaining = [%s] Dash",
+        esc_html__("Compra não paga - Saldo Remanescente = [%s] Dash",
             'dashpay-woocommerce'),
         $this->remainingBalance()
       )

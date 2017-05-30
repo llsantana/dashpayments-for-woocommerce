@@ -9,7 +9,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 echo "= " . $email_heading . " =\n\n";
 
-echo sprintf( __( "Payment for order #%d to address %s has been received in the amount of %s %s.\n\nPlease take any necessary action for fulfillment and mark as complete. If the order consists entirely of virtual merchandise managed by WooCommerce, no further action is necessary.\n\nThe order is as follows:", 'dashpay-woocommerce' ), $order->id, $invoice->address, $invoice->orderTotal, $invoice->paymentCurrency ) . "\n\n";
+echo sprintf( __( "O pagamento para a ordem #%d para o endereço %s foi recebido na quantidade de %s %s.\n\nPor favor, tome todas as medidas necessárias para preenchimento e marque como completas. Se a ordem é composta inteiramente de mercadorias virtuais geridas pela WooCommerce, nenhuma outra ação é necessária.\n\nA ordem é a seguinte:", 'dashpay-woocommerce' ), $order->id, $invoice->address, $invoice->orderTotal, $invoice->paymentCurrency ) . "\n\n";
 
 echo "=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=\n\n";
 

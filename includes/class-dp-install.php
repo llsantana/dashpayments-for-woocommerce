@@ -71,7 +71,7 @@ class DP_Install {
     public static function updated_notice() {
 ?>
         <div id="message" class="updated dashpayments-message dp-connect">
-            <p><?php _e( 'DashPayments data update complete. Thank you for updating to the latest version!', 'dashpay-woocommerce' ); ?></p>
+            <p><?php _e( 'Atualização do DashPayments concluída. Obrigado por atualizar para a versão mais recente! ', 'dashpay-woocommerce' ); ?></p>
         </div>
 <?php
     }
@@ -151,7 +151,7 @@ class DP_Install {
     public static function cron_schedules( $schedules ) {
         $schedules['every_minute'] = array(
             'interval' => 60,
-            'display'  => __( 'Every minute', 'woocommerce' )
+            'display'  => __( 'Todo minuto', 'woocommerce' )
         );
         return $schedules;
     }

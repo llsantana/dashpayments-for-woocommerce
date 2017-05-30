@@ -33,7 +33,7 @@ class WC_Gateway_DashPay extends WC_Payment_Gateway {
         $this->icon               = plugins_url('/assets/images/dash-32x.png', DP_PLUGIN_FILE);
         $this->has_fields         = false;
         $this->method_title       = __('Dash', 'dashpay-woocommerce');
-        $this->method_description = __('Pay with Dash - Digital Cash', 'dashpay-woocommerce');
+        $this->method_description = __('Pague com Dash - Digital Cash', 'dashpay-woocommerce');
 
         // Init settings
         $this->init_form_fields();
@@ -131,14 +131,14 @@ class WC_Gateway_DashPay extends WC_Payment_Gateway {
      */
     protected function check_valid() {
         if ( $this->enabled == 'no') {
-            return __('Gateway is not enabled.', 'dashpay-woocommerce');
+            return __('O gateway não está ativado.', 'dashpay-woocommerce');
         }
 
         // required PHP extensions
         $missing = DP()->missing_required_extensions();
         if ( 0 !== count($missing) ) {
             $msg = sprintf(
-                esc_html__("Required extension(s) not loaded/enabled. Please enable '%s' PHP extension(s) on your WordPress server.", 'dashpay-woocommerce'),
+                esc_html__("Extensões necessárias não carregadas / habilitadas. Ative a extensão '%s' em seu servidor WordPress.", 'dashpay-woocommerce'),
                 join(', ', $missing)
             );
             return $msg;
@@ -146,20 +146,20 @@ class WC_Gateway_DashPay extends WC_Payment_Gateway {
 
         // Ensure xpub entered
         if ( ! $this->xpub_key ) {
-            $msg = __("Pleace add a Dash BIP32 extended public key (Launch your Electrum-Dash wallet, Select Wallet->Master Public Keys)", 'dashpay-woocommerce');
+            $msg = __("Por favor adicione uma chave pública Dash BIP32 (Abra sua carteira Electrum-Dash , Selecione  Carteira-> Master Public Keys)", 'dashpay-woocommerce');
             return $msg;
         }
 
         // Ensure valid xpub
         if ( ! CoinUtil::is_valid_public_xkey( $this->xpub_key ) ) {
-            $msg = __("Invalid xpub key.", 'dashpay-woocommerce');
+            $msg = __("Chave xpub inválida.", 'dashpay-woocommerce');
             return $msg;
         }
 
         // Must be a valid insight instance that we can connect to
         $insight = new DP_Insight_API( $this->settings['insight_api_url'] );
         if ( ! $insight->is_valid() ) {
-            $msg = __('Insight-API error in connection or network status', 'dashpay-woocommerce');
+            $msg = __('Insight-API erro na conexão ou status da rede', 'dashpay-woocommerce');
             return $msg;
         }
 
@@ -169,7 +169,7 @@ class WC_Gateway_DashPay extends WC_Payment_Gateway {
             $exchange_rate = DP_Exchange_Rate::get_exchange_rate(self::$currency_ticker_symbol, get_woocommerce_currency());
         }
         catch (\Exception $e) {
-            $msg = __('Error retrieving exchange rate.');
+            $msg = __('Erro ao buscar taxa de câmbio.');
             return $msg;
         }
 
@@ -180,13 +180,13 @@ class WC_Gateway_DashPay extends WC_Payment_Gateway {
             $insight_network = $insight->get_network();
         }
         catch (\Exception $ex) {
-            $msg = __('Insight-API error.', 'dashpay-woocommerce');
+            $msg = __('Error Insight-API.', 'dashpay-woocommerce');
             return $msg;
         }
 
         if ( $xpub_network != $insight_network ) {
             $msg = sprintf(
-                esc_html__('Network discrepancy. Network for xpub key determined as %s, but Insight-API instance is running %s.', 'dashpay-woocommerce'),
+                esc_html__('Discrepância da rede. Rede para chave xpub determinada como %s, mas Insight-API instância está em execução %s.', 'dashpay-woocommerce'),
                 $xpub_network,
                 $insight_network
             );
@@ -211,7 +211,7 @@ class WC_Gateway_DashPay extends WC_Payment_Gateway {
         $missing = DP()->missing_required_extensions();
         if ( 0 !== count($missing) ) {
             $msg = sprintf(
-                __("<strong>DashPayments for WooCommerce:</strong> Required extension(s) not loaded/enabled. Please enable '%s' PHP extension(s) on your WordPress server.", 'dashpay-woocommerce'),
+                __("<strong>DashPayments para WooCommerce:</strong> Extensões necessárias não carregadas / habilitadas. Ative a extensão '% s' do PHP no seu servidor WordPress.", 'dashpay-woocommerce'),
                 join(', ', $missing)
             );
             self::_admin_error( $msg );
@@ -220,13 +220,13 @@ class WC_Gateway_DashPay extends WC_Payment_Gateway {
 
         // Check for xpub key
         if ( ! $this->xpub_key ) {
-            self::_admin_error( __("Pleace add a Dash BIP32 extended public key (Launch your Electrum-Dash wallet, Select Wallet->Master Public Keys)", 'dashpay-woocommerce') );
+            self::_admin_error( __("Por favor adicione uma chave pública Dash BIP32 (Abra sua carteira Electrum-Dash , Selecione  Carteira-> Master Public Keys)", 'dashpay-woocommerce') );
             return false;
         }
 
         // valid xpub key
         if ( ! CoinUtil::is_valid_public_xkey( $this->xpub_key ) ) {
-            $msg = __("Invalid xpub key.", 'dashpay-woocommerce');
+            $msg = __("Chave xpub inválida.", 'dashpay-woocommerce');
             self::_admin_error( $msg );
             return false;
         }
@@ -242,7 +242,7 @@ class WC_Gateway_DashPay extends WC_Payment_Gateway {
         }
 
         if ( ! $insight_valid ) {
-            $msg = __('Insight-API error in connection or network status', 'dashpay-woocommerce');
+            $msg = __('Insight-API erro na conexão ou status da rede', 'dashpay-woocommerce');
             self::_admin_error( $msg );
             return false;
         }
@@ -253,7 +253,7 @@ class WC_Gateway_DashPay extends WC_Payment_Gateway {
             $exchange_rate = DP_Exchange_Rate::get_exchange_rate(self::$currency_ticker_symbol, get_woocommerce_currency());
         }
         catch (\Exception $e) {
-            $msg = __('Error retrieving exchange rate.');
+            $msg = __('Erro ao buscar taxa de câmbio.');
             self::_admin_error( $msg );
             return false;
         }
@@ -265,14 +265,14 @@ class WC_Gateway_DashPay extends WC_Payment_Gateway {
             $insight_network = $insight->get_network();
         }
         catch (\Exception $ex) {
-            $msg = __('Insight-API error.', 'dashpay-woocommerce');
+            $msg = __('Erro Insight-API.', 'dashpay-woocommerce');
             self::_admin_error( $msg );
             return false;
         }
 
         if ( $xpub_network != $insight_network ) {
             $msg = sprintf(
-                esc_html__('Network discrepancy. Network for xpub key determined as %s, but Insight-API instance is running %s.', 'dashpay-woocommerce'),
+                esc_html__('Discrepância da rede. Rede para chave xpub determinada como %s, mas Insight-API instância está em execução %s.', 'dashpay-woocommerce'),
                 $xpub_network,
                 $insight_network
             );
@@ -294,51 +294,51 @@ class WC_Gateway_DashPay extends WC_Payment_Gateway {
     public function init_form_fields() {
         $this->form_fields = array(
           'enabled' => array(
-            'title' => __( 'Enable/Disable', 'dashpay-woocommerce' ),
+            'title' => __( 'Ativar/Desativar', 'dashpay-woocommerce' ),
             'type' => 'checkbox',
-            'label' => __( 'Enable Dash Payments', 'dashpay-woocommerce' ),
+            'label' => __( 'Ativar Dash Payments', 'dashpay-woocommerce' ),
             'default' => 'yes'
           ),
           'title' => array(
-            'title' => __( 'Title', 'dashpay-woocommerce' ),
+            'title' => __( 'Título', 'dashpay-woocommerce' ),
             'type' => 'text',
-            'description' => __( 'This controls the title which the user sees during checkout.', 'dashpay-woocommerce' ),
-            'default' => __( 'Pay with Dash', 'dashpay-woocommerce' ),
+            'description' => __( 'Isso controla o título que o usuário vê durante o checkout.', 'dashpay-woocommerce' ),
+            'default' => __( 'Pague com Dash', 'dashpay-woocommerce' ),
             // 'desc_tip'    => true,
           ),
           'xpub_key' => array(
-            'title' => __( "Dash BIP32 Extended Public Key", 'dashpay-woocommerce' ),
+            'title' => __( "Dash BIP32 Chave pública estendida", 'dashpay-woocommerce' ),
             'type' => 'textarea',
             'default' => '',
-            'description' => __('Start <a href="https://www.dash.org/downloads" target="_blank">Electrum Dash wallet</a> and get Master Public Key value from:<br>Wallet -> Master Public Key<br>Copy/paste the string starting with "xpub" into this field.', 'dashpay-woocommerce'),
+            'description' => __('Vá em  <a href="https://www.dash.org/downloads" target="_blank">Carteira Electrum Dash</a> e pegue a Chave Pública Master de:<br>Carteira -> Master Public Key<br>Copie e Cole o texto começãndo com "xpub" desntro deste campo.', 'dashpay-woocommerce'),
             // 'desc_tip'    => true,
           ),
           'confirmations' => array(
-            'title' => __( 'Confirmations required', 'dashpay-woocommerce' ),
+            'title' => __( 'Confirmações necessárias', 'dashpay-woocommerce' ),
             'type' => 'text',
-            'description' => __( 'Number of confirmations required before payment is accepted.', 'dashpay-woocommerce' ),
+            'description' => __( 'Numero de confirmations necessárias antes do pagamento ser considerado realizado.', 'dashpay-woocommerce' ),
             'default' => '6',
             // 'desc_tip'    => true,
           ),
           'exchange_multiplier' => array(
-            'title' => __('Exchange rate multiplier', 'dashpay-woocommerce' ),
+            'title' => __('Multiplicador de taxa de câmbio', 'dashpay-woocommerce' ),
             'type' => 'text',
-            'description' => 'Extra multiplier to apply to convert store default currency to price.',
+            'description' => 'Multiplicador extra para aplicar para converter a moeda padrão da loja para o preço.',
             'default' => '1.00',
             // 'desc_tip'    => true,
           ),
           'insight_api_url' => array(
-            'title' => __('Insight API url', 'dashpay-woocommerce' ),
-            'description' => 'This plugin requires a running instance of Insight-API. You may use the default, or provide your own for greater security.',
+            'title' => __('Url Insight API ', 'dashpay-woocommerce' ),
+            'description' => 'Este plugin requer uma instância em execução do Insight-API. Você pode usar o padrão, ou fornecer o seu próprio para maior segurança.',
             'type' => 'text',
             'default' => 'https://insight.dash.org',
             // 'desc_tip'    => true,
           ),
           'description' => array(
-            'title'       => __( 'Description', 'woocommerce' ),
+            'title'       => __( 'Descrição', 'woocommerce' ),
             'type' => 'textarea',
-            'description' => __( 'Payment method description that the customer will see on your checkout.', 'dashpay-woocommerce' ),
-            'default' => __( 'Please proceed to the next screen to see necessary payment details.', 'dashpay-woocommerce' ),
+            'description' => __( 'Descrição do método de pagamento que o cliente verá na sua conta.', 'dashpay-woocommerce' ),
+            'default' => __( 'Vá para a próxima tela para ver os detalhes de pagamento necessários.', 'dashpay-woocommerce' ),
             // 'desc_tip'    => true,
           ),
         );
@@ -352,20 +352,20 @@ class WC_Gateway_DashPay extends WC_Payment_Gateway {
      * @return void
      */
     public function admin_options() {
-        echo '<h3>' . __('Pay with Dash', 'dashpay-woocommerce') . "</h3>\n";
-        echo '<p>' . __('Enables direct Dash payments with WooCommerce. <a href="https://www.dash.org/" target="_blank">Dash</a> is a peer-to-peer, decentralized digital currency that enables instant payments from anyone to anyone, anywhere in the world.', 'dashpay-woocommerce') . "</p>\n";
+        echo '<h3>' . __('Pague com Dash', 'dashpay-woocommerce') . "</h3>\n";
+        echo '<p>' . __('Permite pagamentos diretos do Dash com WooCommerce. <a href="https://www.dash.org/" target="_blank">Dash</a> é moeda digital peer-to-peer, descentralizada que permite pagamentos instantâneos de qualquer pessoa para qualquer pessoa, em qualquer lugar do mundo.', 'dashpay-woocommerce') . "</p>\n";
 
         $error_message = $this->check_valid();
 
         if ( $error_message ) {
             $msg = sprintf(
-                esc_html__('Dash payment gateway NOT operational. %s', 'dashpay-woocommerce'),
+                esc_html__('Gateway de pagamento Dash NãO está operacional. %s', 'dashpay-woocommerce'),
                 $error_message
             );
             self::_OLD_admin_error( $msg );
         }
         else {
-            self::_OLD_admin_success(__('Dash payment gateway is operational.','dashpay-woocommerce'));
+            self::_OLD_admin_success(__('Gateway de pagamento Dash está operacional.','dashpay-woocommerce'));
         }
 
         // Generate the HTML for the settings form
@@ -397,7 +397,7 @@ class WC_Gateway_DashPay extends WC_Payment_Gateway {
             $exchange_rate = DP_Exchange_Rate::get_exchange_rate(self::$currency_ticker_symbol, get_woocommerce_currency());
         }
         catch (\Exception $e) {
-            $msg = "Error retrieving exchange rate.";
+            $msg = "Erro ao buscar taxa de câmbio.";
             exit ('<h2 style="color:red;">' . $msg . '</h2>');
         }
 

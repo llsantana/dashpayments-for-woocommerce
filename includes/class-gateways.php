@@ -12,7 +12,7 @@ class DP_Gateways {
 
     public static function gateway_id( $currency ) {
         if ( !isset ( self::$gateways[ $currency ] ) ) {
-            throw new Exception("Gateway [$currency] not found.");
+            throw new Exception("Gateway [$currency] não encontrado.");
         }
         return self::$gateways[ $currency ];
     }

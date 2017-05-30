@@ -21,7 +21,7 @@ class DP_Insight_API {
     $url = $this->insight_server_url . $endpoint;
     $resp = wp_remote_get( $url , array( 'timeout' => 8 ) );
     if ( is_wp_error( $resp ) ) {
-      $message = "Insight API connection failure: " . $resp->get_error_message();
+      $message = "Falha de conexão Insight API: " . $resp->get_error_message();
       throw new Exception( $message );
     }
 
@@ -75,7 +75,7 @@ class DP_Insight_API {
 
   public function get_address_meta($address) {
     if ( ! $address ) {
-      throw new Exception("Invalid Address");
+      throw new Exception("Endereço Inválido");
     }
     $endpoint = '/api/addr/' . $address . '/';
     $resp = $this->get_endpoint( $endpoint );
@@ -84,7 +84,7 @@ class DP_Insight_API {
 
   public function get_full_tx( $txid ) {
     if ( ! $txid ) {
-      throw new Exception("Invalid TXID");
+      throw new Exception("TXID Inválido");
     }
 
     $endpoint = '/api/tx/' . $txid;

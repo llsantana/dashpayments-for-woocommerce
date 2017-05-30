@@ -24,10 +24,10 @@ class DP_Email_Invoice_Paid extends WC_Email {
      */
     public function __construct() {
         $this->id               = 'dp_invoice_paid';
-        $this->title            = __( 'Invoice paid', 'dashpay-woocommerce' );
-        $this->description      = __( 'Invoice paid emails are sent to the store admin when orders have been Paid in Full.', 'dashpay-woocommerce' );
-        $this->heading          = __( 'Invoice paid', 'dashpay-woocommerce' );
-        $this->subject          = __( '[{site_title}] Invoice paid ({order_number})', 'dashpay-woocommerce' );
+        $this->title            = __( 'Fatura paga', 'dashpay-woocommerce' );
+        $this->description      = __( 'Email de fatura paga será enviado pela loja quando o pagamento estiver confirmado.', 'dashpay-woocommerce' );
+        $this->heading          = __( 'Fatura paga', 'dashpay-woocommerce' );
+        $this->subject          = __( '[{site_title}] Fatura paga ({order_number})', 'dashpay-woocommerce' );
         $this->template_html    = 'emails/invoice-paid-order.php';
         $this->template_plain   = 'emails/plain/invoice-paid-order.php';
         $this->template_base    = DP()->template_path();
@@ -102,39 +102,39 @@ class DP_Email_Invoice_Paid extends WC_Email {
     public function init_form_fields() {
         $this->form_fields = array(
             'enabled' => array(
-                'title'         => __( 'Enable/Disable', 'dashpay-woocommerce' ),
+                'title'         => __( 'Ativar/Desativar', 'dashpay-woocommerce' ),
                 'type'          => 'checkbox',
-                'label'         => __( 'Enable this email notification', 'dashpay-woocommerce' ),
+                'label'         => __( 'Ativar este email de notificação', 'dashpay-woocommerce' ),
                 'default'       => 'yes'
             ),
             'recipient' => array(
-                'title'         => __( 'Recipient(s)', 'dashpay-woocommerce' ),
+                'title'         => __( 'Destinatário(s)', 'dashpay-woocommerce' ),
                 'type'          => 'text',
-                'description'   => sprintf( __( 'Enter recipients (comma separated) for this email. Defaults to <code>%s</code>.', 'dashpay-woocommerce' ), esc_attr( get_option('admin_email') ) ),
+                'description'   => sprintf( __( 'Informe os destinatários (separado por vírgula) para este email. Padrão <code>%s</code>.', 'dashpay-woocommerce' ), esc_attr( get_option('admin_email') ) ),
                 'placeholder'   => '',
                 'default'       => '',
                 'desc_tip'      => true
             ),
             'subject' => array(
-                'title'         => __( 'Subject', 'dashpay-woocommerce' ),
+                'title'         => __( 'Assunto', 'dashpay-woocommerce' ),
                 'type'          => 'text',
-                'description'   => sprintf( __( 'This controls the email subject line. Leave blank to use the default subject: <code>%s</code>.', 'dashpay-woocommerce' ), $this->subject ),
+                'description'   => sprintf( __( 'Isso controla a linha de assunto do e-mail. Deixe em branco para usar o assunto padrão: <code>%s</code>.', 'dashpay-woocommerce' ), $this->subject ),
                 'placeholder'   => '',
                 'default'       => '',
                 'desc_tip'      => true
             ),
             'heading' => array(
-                'title'         => __( 'Email Heading', 'dashpay-woocommerce' ),
+                'title'         => __( 'Cabeçalho Email', 'dashpay-woocommerce' ),
                 'type'          => 'text',
-                'description'   => sprintf( __( 'This controls the main heading contained within the email notification. Leave blank to use the default heading: <code>%s</code>.', 'dashpay-woocommerce' ), $this->heading ),
+                'description'   => sprintf( __( 'Isso controla o cabeçalho principal contido na notificação por e-mail. Deixe em branco para usar o cabeçalho padrão: <code>%s</code>.', 'dashpay-woocommerce' ), $this->heading ),
                 'placeholder'   => '',
                 'default'       => '',
                 'desc_tip'      => true
             ),
             'email_type' => array(
-                'title'         => __( 'Email type', 'dashpay-woocommerce' ),
+                'title'         => __( 'Tipo de Email', 'dashpay-woocommerce' ),
                 'type'          => 'select',
-                'description'   => __( 'Choose which format of email to send.', 'dashpay-woocommerce' ),
+                'description'   => __( 'Escolha qual formato de e-mail enviar.', 'dashpay-woocommerce' ),
                 'default'       => 'html',
                 'class'         => 'email_type wc-enhanced-select',
                 'options'       => $this->get_email_type_options(),

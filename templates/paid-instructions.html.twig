@@ -1,10 +1,10 @@
 <input type="hidden" name="order_id" id="order_id" value="{{ order_id }}">
 <input type="hidden" name="is_finalized" id="is_finalized" value="{{ is_finalized }}">
 
-<h3><img src="{{ header_icon }}">&nbsp;Invoice has been Paid!</h3>
+<h3><img src="{{ header_icon }}">&nbsp;Pagamento efetuado com sucesso!</h3>
 
 <div id="tx_info" style="display: block; padding: 15px; margin-bottom: 20px; border: 1px solid transparent; border-radius: 4px; box-sizing: border-box; background-color: #dff0d8; border-color: #d6e9c6; color: #3c763d;">
-  The following transaction ids were used to pay this invoice:
+  Os seguintes IDs de transação foram usados para pagar essa fatura:
   <ul id="txlist" style="padding-left: 20px;">
     {% for txid in txid_list %}
       <li>{{ txid }}</li>
@@ -12,6 +12,7 @@
   </ul>
 </div>
 
-Please contact the store owner if you have any questions/concerns regarding your order. Thanks for choosing to Pay with {{ payment_currency }}!
+Entre em contato com o proprietário da loja se você tiver alguma dúvida / preocupação com relação ao seu pedido.
+Obrigado por escolher pagar com {{payment_currency}}!
 
-See order details below.
+Veja os detalhes do pedido abaixo.

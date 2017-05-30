@@ -3,24 +3,24 @@
 
 {% if txid_list|length > 0 %}
 <div id="tx_info" style="display: block; padding: 15px; margin-bottom: 20px; border: 1px solid transparent; border-radius: 4px; box-sizing: border-box; background-color: #dff0d8; border-color: #d6e9c6; color: #3c763d;">
-  Incoming transactions detected:
+  Transações recebidas detectadas:
   <ul id="txlist" style="padding-left: 20px;">
     {% for txid in txid_list %}
       <li>{{ txid }}</li>
     {% endfor %}
   </ul>
 
-  This store requires that transactions have {{ required_confirmations }} confirmations on the Dash network before being processed. Once this number has been reached, payment will be confirmed.
+  Esta loja requer que as transações tenham {{mandatory_confirmations}} confirmações na rede Dash antes de serem processadas. Uma vez atingido este número, o pagamento será confirmado.
 </div>
 {% endif %}
 
 <table>
 <tr>
-  <td colspan="4">Please send your payment as follows:</td>
+  <td colspan="4">Envie o seu pagamento da seguinte forma:</td>
 </tr>
 <tr>
   <td colspan="1" style="vertical-align:middle;">
-  Amount <strong>Dash</strong>:
+  Quantidade <strong>Dash</strong>:
   </td>
   <td colspan="3">
     <div style="border:1px solid #FCCA09;padding:2px 6px;margin:2px;background-color:#FCF8E3;border-radius:4px;color:#CC0000;font-weight: bold;font-size: 120%;">
@@ -30,7 +30,7 @@
 </tr>
 <tr>
   <td colspan="1" style="vertical-align:middle;">
-  Address:
+  Endereço:
   </td>
   <td colspan="3">
     <div style="border:1px solid #FCCA09;padding:2px 6px;margin:2px;background-color:#FCF8E3;border-radius:4px;color:#555;font-weight: bold;font-size: 120%;">
@@ -52,9 +52,9 @@
 </tr>
 </table>
 
-Please note:
+Observação:
 <ol>
-  <li>You must make a payment within one hour, or your order will be cancelled.</li>
-  <li>As soon as your payment is received, you will receive an email confirmation with order delivery details.</li>
-  <li>You may send multiple payments in order to reach the total required amount.</li>
+   <li> Você deve efetuar um pagamento dentro de uma hora ou seu pedido será cancelado.</li>
+   <li> Assim que o seu pagamento for recebido, você receberá um e-mail de confirmação com os detalhes da entrega da encomenda. </li>
+   <li> Você pode enviar vários pagamentos para atingir o valor total exigido. </li>
 </ol>
