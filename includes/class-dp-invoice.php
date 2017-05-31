@@ -64,7 +64,7 @@ class DP_Invoice {
     }
 
     if ( 0 < count($missing) ) {
-      $ex_msg = "Os argumentos necessários não foram fornecidos: " + join(', ', $missing);
+      $ex_msg = "Os argumentos necess&aacute;rios n&atilde;o foram fornecidos: " + join(', ', $missing);
       throw new InvalidArgumentException($ex_msg);
     }
 
@@ -242,7 +242,7 @@ class DP_Invoice {
   }
 
   private function expire() {
-    $this->order->update_status('cancelled', __('Invoice has Expired.', 'dashpay-woocommerce') );
+    $this->order->update_status('cancelled', __('A Compra expirou.', 'dashpay-woocommerce') );
 
     // if Invoice expired and address has no transactions, re-use the address
     if ( 0 === count($this->txidList) ) {
@@ -266,7 +266,7 @@ class DP_Invoice {
     $this->remove_reuse_flag();
     $this->clear_address_meta();
 
-    $this->order->add_order_note( __('Order Paid in Full', 'dashpay-woocommerce') );
+    $this->order->add_order_note( __('Compra paga na sua totalidade.', 'dashpay-woocommerce') );
 
     // a comma-separated list of all TXids used to fund this order
     $tx_record = join(',', $this->txidList);
@@ -282,7 +282,7 @@ class DP_Invoice {
     $this->markAsPaid();
     $this->order->add_order_note(
       sprintf(
-        esc_html__("Compra paga à mais [%s] Dash", 'dashpay-woocommerce'),
+        esc_html__("Compra paga &agrave; mais [%s] Dash", 'dashpay-woocommerce'),
             $this->remainingBalance() * -1
       )
     );
@@ -293,7 +293,7 @@ class DP_Invoice {
     // status remains awaiting payment, simply add a note
     $this->order->add_order_note(
       sprintf(
-        esc_html__("Compra não paga - Saldo Remanescente = [%s] Dash",
+        esc_html__("Compra n&atilde;o paga - Saldo Remanescente = [%s] Dash",
             'dashpay-woocommerce'),
         $this->remainingBalance()
       )

@@ -25,7 +25,7 @@ class DP_Email_Invoice_Paid extends WC_Email {
     public function __construct() {
         $this->id               = 'dp_invoice_paid';
         $this->title            = __( 'Fatura paga', 'dashpay-woocommerce' );
-        $this->description      = __( 'Email de fatura paga será enviado pela loja quando o pagamento estiver confirmado.', 'dashpay-woocommerce' );
+        $this->description      = __( 'Email de fatura paga ser&aacute; enviado pela loja quando o pagamento estiver confirmado.', 'dashpay-woocommerce' );
         $this->heading          = __( 'Fatura paga', 'dashpay-woocommerce' );
         $this->subject          = __( '[{site_title}] Fatura paga ({order_number})', 'dashpay-woocommerce' );
         $this->template_html    = 'emails/invoice-paid-order.php';
@@ -104,13 +104,13 @@ class DP_Email_Invoice_Paid extends WC_Email {
             'enabled' => array(
                 'title'         => __( 'Ativar/Desativar', 'dashpay-woocommerce' ),
                 'type'          => 'checkbox',
-                'label'         => __( 'Ativar este email de notificação', 'dashpay-woocommerce' ),
+                'label'         => __( 'Ativar este email de notifica&ccedil;&atilde;o', 'dashpay-woocommerce' ),
                 'default'       => 'yes'
             ),
             'recipient' => array(
-                'title'         => __( 'Destinatário(s)', 'dashpay-woocommerce' ),
+                'title'         => __( 'Destinat&aacute;rio(s)', 'dashpay-woocommerce' ),
                 'type'          => 'text',
-                'description'   => sprintf( __( 'Informe os destinatários (separado por vírgula) para este email. Padrão <code>%s</code>.', 'dashpay-woocommerce' ), esc_attr( get_option('admin_email') ) ),
+                'description'   => sprintf( __( 'Informe os destinat&aacute;rios (separado por vírgula) para este email. Padr&atilde;o <code>%s</code>.', 'dashpay-woocommerce' ), esc_attr( get_option('admin_email') ) ),
                 'placeholder'   => '',
                 'default'       => '',
                 'desc_tip'      => true
@@ -118,15 +118,15 @@ class DP_Email_Invoice_Paid extends WC_Email {
             'subject' => array(
                 'title'         => __( 'Assunto', 'dashpay-woocommerce' ),
                 'type'          => 'text',
-                'description'   => sprintf( __( 'Isso controla a linha de assunto do e-mail. Deixe em branco para usar o assunto padrão: <code>%s</code>.', 'dashpay-woocommerce' ), $this->subject ),
+                'description'   => sprintf( __( 'Isso controla a linha de assunto do e-mail. Deixe em branco para usar o assunto padr&atilde;o: <code>%s</code>.', 'dashpay-woocommerce' ), $this->subject ),
                 'placeholder'   => '',
                 'default'       => '',
                 'desc_tip'      => true
             ),
             'heading' => array(
-                'title'         => __( 'Cabeçalho Email', 'dashpay-woocommerce' ),
+                'title'         => __( 'Cabe&ccedil;alho Email', 'dashpay-woocommerce' ),
                 'type'          => 'text',
-                'description'   => sprintf( __( 'Isso controla o cabeçalho principal contido na notificação por e-mail. Deixe em branco para usar o cabeçalho padrão: <code>%s</code>.', 'dashpay-woocommerce' ), $this->heading ),
+                'description'   => sprintf( __( 'Isso controla o cabe&ccedil;alho principal contido na notifica&ccedil;&atilde;o por e-mail. Deixe em branco para usar o cabe&ccedil;alho padr&atilde;o: <code>%s</code>.', 'dashpay-woocommerce' ), $this->heading ),
                 'placeholder'   => '',
                 'default'       => '',
                 'desc_tip'      => true

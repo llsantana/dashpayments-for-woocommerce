@@ -71,7 +71,7 @@ class DP_Install {
     public static function updated_notice() {
 ?>
         <div id="message" class="updated dashpayments-message dp-connect">
-            <p><?php _e( 'Atualização do DashPayments concluída. Obrigado por atualizar para a versão mais recente! ', 'dashpay-woocommerce' ); ?></p>
+            <p><?php _e( 'Atualiza&ccedil;&atilde;o do DashPayments conclu&iacute;da. Obrigado por atualizar para a vers&atilde;o mais recente! ', 'dashpay-woocommerce' ); ?></p>
         </div>
 <?php
     }

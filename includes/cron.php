@@ -74,7 +74,7 @@ function process_order_callback( ) {
     if ( !$order_valid ) {
         $resp = array(
           'success' => false,
-          'error' => 'A chave da compra não corresponde ao código da compra'
+          'error' => 'A chave da compra n&atilde;o corresponde ao c&Oacute;digo da compra'
         );
         $json_payload = json_encode($resp);
         echo $json_payload;
