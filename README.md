@@ -1,16 +1,16 @@
-# DashPayments for WooCommerce 
+# DashPayments para WooCommerce 
 
-DashPayments for WooCommerce is a Wordpress plugin that enables WooCommerce merchants to accept [Dash](https://www.dash.org "Dash - Digital Cash") directly, without the need for a third-party payment processor.
+DashPayments para WooCommerce é um plugin Wordpress que habilita lojas WooCommerce à aceitarem [Dash](https://www.dash.org "Dash - Digital Cash") diretamente, sem a necessidade que um terceiro realize o processamento do pagamento.
 
-* Uses BIP32 extended public (xpub) keys for address generation.
-* Requires access to an [Insight-API-Dash](https://github.com/udjinm6/insight-api-dash) instance
+* Utiliza BIP32 chave pública extendida (xpub) para geração de endereços.
+* Requer acesso à instância [Insight-API-Dash](https://github.com/udjinm6/insight-api-dash).
 
-### Requirements:
+### Requerimentos:
 
-* An Electrum-Dash wallet for receiving payments
+* Uma carteira Electrum-Dash para recebimento dos pagamentos
 * WordPress 4.4.2+
 * WooCommerce 2.5.2+
-* PHP 5.5+ with valid extensions:
+* PHP 5.5+ com as seguintes extenções:
   - gmp
   - bcmath
   - gd
@@ -19,44 +19,44 @@ DashPayments for WooCommerce is a Wordpress plugin that enables WooCommerce merc
   - curl
   - json
 
-### Developers: Building the plugin
+### Desenvolvedores: Costruindo o plugin
 
-Install composer using your package manager, then use ```composer install``` to fetch all dependencies and place them into 'vendor/'.
+Instale o composer usando seu gerenciador de pacotes, então use ```composer install``` para buscar todas as dependências e colocá-las em 'vendor/'.
 
-If desired, use 'zip' to package the directory into a zip file with the same name:
+Se desejar, use 'zip' para empacotar o diretório em um arquivo zip com o mesmo nome:
 
     cd .. && zip -r dashpay-woocommerce.zip dashpay-woocommerce/
 
-### Installation and Activation
+### Instalação e Ativação
 
-Extract the .zip file and copy or FTP the dashpay-woocommerce directory to the WordPress 'plugins' directory. Activate the plugin in the WordPress-admin console.
+Extraia o arquivo .zip e copie ou FTP o diretório dashpay-woocommerce para o diretório do WordPress 'plugins'. Ative o plugin no console do WordPress-admin.
 
-Navigate to WooCommerce -> Settings -> Checkout. Click the 'Dash' option at the top of the page. Paste your xpub key from Electrum-Dash into the box labeled "Dash BIP32 Extended Public Key", and click 'Save changes' at the bottom of the page.
+Navegue para o WooCommerce -> Configurações -> Checkout. Clique na opção "Dash" na parte superior da página. Cole a sua chave xpub da Electrum-Dash na caixa "Dash BIP32 Extended Public Key" e clique em 'Salvar alterações' na parte inferior da página.
 
-If you see a message stating "Dash payment gateway is operational", you should be ready to accept payment in Dash.
+Se você vir uma mensagem informando que "O gateway de pagamento do Dash está operacional", você deve estar pronto para aceitar o pagamento no Dash.
 
-Here's a YouTube video demonstrating the exact process I described above:
+Aqui está um vídeo do YouTube que demonstra o processo exato que eu descrevi acima:
 
 <https://www.youtube.com/watch?v=HFzMPBY1rAQ>
 
-### **HIGHLY RECOMMENDED (READ THIS SECTION)**
+### **ALTAMENTE RECOMENDADO (LEIA ESTA SEÇÃO)**
 
-It's highly recommended that you setup a cron job to handle background order processing. It's not technically required, but will catch things like if a user closes their browser before the payment gets processed.
+É altamente recomendável que você configure um trabalho cron para lidar com o processamento de pedidos em segundo plano. Não é tecnicamente necessário, mas irá pegar coisas como se um usuário fechasse seu navegador antes do pagamento ser processado.
 
-For manual cron jobs, add this line to your crontab (replace <yourdomain.com> with your own WordPress site URL):
+Para trabalhos cron manuais, adicione esta linha ao seu crontab (substitua <seudominio.com> por seu próprio URL do site WordPress):
 
-    * * * * * curl -s http://<yourdomain.com>/wp-cron.php?doing_wp_cron > /dev/null 2>&1
+     * * * * * Curl -s http: // <seudominio.com> /wp-cron.php?doing_wp_cron> / dev / null 2> & 1
 
-For CPANEL, run the command below every minute (replace <yourdomain.com> with your own WordPress site URL):
+Para CPANEL, execute o comando abaixo cada minuto (substitua <seudominio.com> pelo seu URL do site WordPress):
 
-    curl -s http://<yourdomain.com>/wp-cron.php?doing_wp_cron > /dev/null 2>&1
+     Curl -s http: // <seudominio.com> /wp-cron.php?doing_wp_cron> / dev / null 2> & 1
 
-### Contributions/Bugs/Issues
+### Contribuições / Bugs / Problemas
 
-If you'd like to contribute to the project, please submit a pull request at this Github repository (please fork this project and submit a pull request using a feature-branch).
+Se você quiser contribuir com o projeto, envie uma solicitação de puxar para este repositório Github (por favor, garanta esse projeto e envie uma solicitação de puxar usando um ramo de recursos).
 
-If you think you've found a bug, please file an issue at this Github repo (start by clicking the issues tab above).
+Se você acha que encontrou um bug, por favor, envie um problema a esse pagamento do Github (comece clicando na guia de problemas acima).
 
-### License
+### Licença
 
-DashPayments for WooCommerce is released under the terms of the MIT license. See http://opensource.org/licenses/MIT.
+DashPayments para WooCommerce é licenciado sob os termos da licença MIT. See http://opensource.org/licenses/MIT.
